@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+th {
+  background: linear-gradient(to right, #4a90e2, #357abd);
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tr:hover {
+  background-color: rgba(74, 144, 226, 0.1);
+}
+
+tr:hover td {
+  background-color: rgba(74, 144, 226, 0.1);
+}
