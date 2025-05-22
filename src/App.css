@@ -30,8 +30,7 @@ tr:hover td {
   background-color: rgba(74, 144, 226, 0.1);
 }
 
-
-.cards{
+.cards {
   border: 2px solid black;
   padding: 25px;
   width: 200px;
@@ -39,9 +38,25 @@ tr:hover td {
   margin: 20px 10px 20px 10px;
 }
 
-.cards_flex{
+.cards_flex {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  background-color: #357abd;
+  position: sticky;
+  top:0;
+  z-index: 200;
+  background: '#fff';
+  padding: 10px;
+}
+.link {
+  margin: 5px 10px 5px 10px;
+  font-weight: 100;
+  color: aliceblue;
 }

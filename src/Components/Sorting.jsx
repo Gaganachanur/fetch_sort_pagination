@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { url } from "../Utils/linkUtils";
+import NavBar from "./NavBar";
 
 export default function Sorting() {
   const [data, setData] = useState([]);
@@ -15,14 +16,17 @@ export default function Sorting() {
         setData(responce);
       } catch (error) {
         throw new Error(error);
+      } finally {
+        setLoading(false);
       }
     }
     fetchSorting();
-    setLoading(false);
   }, [isAscending]);
   console.log(data, "data");
   return (
     <>
+      {" "}
+      <NavBar />
       <h1>Sorting</h1>
       <label>descending</label>
       <input type="checkbox" onChange={(e) => setIsAscending(!isAscending)} />

@@ -1,20 +1,19 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import TableStructure from "../Utils/tableUtil";
 import { url } from "../Utils/linkUtils";
+import NavBar from "./NavBar";
 
 export default function Search() {
   const [search, setSearch] = useState([]);
   const [keyvalue, setKeyvalue] = useState("");
   const [notfound, setNotfound] = useState(false);
-  const [loading , setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchSearch() {
-      setLoading(true)
+      setLoading(true);
       try {
-        await fetch(
-          `${url}?search=${keyvalue}`
-        )
+        await fetch(`${url}?search=${keyvalue}`)
           .then((res) => {
             return res.json();
           })
@@ -40,24 +39,33 @@ export default function Search() {
 
   function TableData() {
     if (notfound) {
-      return <h1>Data not found</h1>
+      return <h1>Data not found</h1>;
     } else {
       return (
-         <TableStructure tableHead={tableHead()} TableRows={TableRows(search)} />
+        <TableStructure tableHead={tableHead()} TableRows={TableRows(search)} />
       );
     }
   }
 
+  //DeBounce Functionality
+  const deBouncetimer = useRef(null);
+  const handleInputChange = useCallback((e) => {
+    if (deBouncetimer.current) clearTimeout(deBouncetimer.current);
+
+    deBouncetimer.current = setTimeout(() => {
+      setKeyvalue(e.target.value);
+    }, 1000);
+  }, []);
+
   return (
     <>
+      {" "}
+      <NavBar />
       <h1>demo</h1>
       <div>
-        <span>Search</span>{" "}
-        <input onChange={(e) => setKeyvalue(e.target.value)} type="text" />
+        <span>Search</span> <input onChange={handleInputChange} type="text" />
       </div>
-      {loading ?<h2>Loading... </h2>:
-      TableData()
-       }
+      {loading ? <h2>Loading... </h2> : TableData()}
     </>
   );
 }
@@ -74,17 +82,19 @@ const tableHead = () => {
   return fragment;
 };
 
-const TableRows = (search) =>{
-  const fragment  =  search &&
-    search?.map((item, index) => { return (
-    <tr key={index}>
-      <td>{item?.id}</td>
-      <td>{item?.price}</td>
-      <td>{item?.book_author}</td>
-      <td>{item?.name}</td>
-    </tr>
-  );
-})
+const TableRows = (search) => {
+  const fragment =
+    search &&
+    search?.map((item, index) => {
+      return (
+        <tr key={index}>
+          <td>{item?.id}</td>
+          <td>{item?.price}</td>
+          <td>{item?.book_author}</td>
+          <td>{item?.name}</td>
+        </tr>
+      );
+    });
 
-return fragment;
-}
+  return fragment;
+};
