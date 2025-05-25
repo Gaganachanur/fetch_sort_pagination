@@ -1,7 +1,6 @@
 import React, { useEffect, Fragment, useState } from "react";
 import TableStructure from "../Utils/tableUtil";
 import { url } from "../Utils/linkUtils";
-import NavBar from "./NavBar";
 
 // Number of items per page
 const ITEMS_PER_PAGE = 10;
@@ -33,7 +32,6 @@ export default function Pagination() {
 
   return (
     <>
-      <NavBar />
       <div>pagination</div>
       {loading ? (
         <h2>Loading...</h2>

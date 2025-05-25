@@ -31,10 +31,10 @@ tr:hover td {
 }
 
 .cards {
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 25px;
   width: 200px;
-  height: 220px;
+  height: 270px;
   margin: 20px 10px 20px 10px;
 }
 

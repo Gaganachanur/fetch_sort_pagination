@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import TableStructure from "../Utils/tableUtil";
 import { url } from "../Utils/linkUtils";
-import NavBar from "./NavBar";
 
 export default function Search() {
   const [search, setSearch] = useState([]);
@@ -60,7 +59,6 @@ export default function Search() {
   return (
     <>
       {" "}
-      <NavBar />
       <h1>demo</h1>
       <div>
         <span>Search</span> <input onChange={handleInputChange} type="text" />
